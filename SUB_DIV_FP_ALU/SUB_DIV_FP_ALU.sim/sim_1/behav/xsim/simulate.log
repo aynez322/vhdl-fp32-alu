@@ -1,0 +1,97 @@
+Time resolution is 1 ps
+Note: ===== TEST 1: Simple Subtraction =====
+Time: 30 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 10.0, B = 3.5, A - B = 40D00000
+Time: 65 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 2: Simple Division =====
+Time: 75 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 10.0, B = 2.0, A / B = 40A00000
+Time: 105 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 3: Division by Zero =====
+Time: 115 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 5.0, B = 0.0, A / B = 7F800000 (should be +Inf = 7F800000)
+Time: 145 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 4: Subtraction with Negative =====
+Time: 155 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = -2.0, B = 5.0, A - B = C0E00000
+Time: 185 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 5: Inf - Inf (NaN case) =====
+Time: 195 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = +Inf, B = +Inf, A - B = 7FC00000 (should be NaN = 7FC00000)
+Time: 225 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 6: Inf / finite =====
+Time: 235 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = +Inf, B = 1.0, A / B = 7F800000 (should be +Inf = 7F800000)
+Time: 265 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 7: Division 1.0 / 4.0 =====
+Time: 275 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 1.0, B = 4.0, A / B = 3E800000 (should be 0.25 = 3E800000)
+Time: 305 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 8: Subtraction 5.0 - 2.0 =====
+Time: 315 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 5.0, B = 2.0, A - B = 40400000 (should be 3.0 = 40400000)
+Time: 345 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 9: Subtraction to Zero (5.0 - 5.0) =====
+Time: 355 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 5.0, B = 5.0, A - B = 00000000 (should be 0.0 = 00000000)
+Time: 385 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 10: Subtraction 0.0 - 5.0 =====
+Time: 395 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 0.0, B = 5.0, A - B = C0A00000 (should be -5.0 = C0A00000)
+Time: 425 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 11: Subtraction -5.0 - (-5.0) =====
+Time: 435 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = -5.0, B = -5.0, A - B = 00000000 (should be 0.0 = 00000000)
+Time: 465 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 12: Division 10.0 / 1.0 =====
+Time: 475 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 10.0, B = 1.0, A / B = 41200000 (should be 10.0 = 41200000)
+Time: 505 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 13: Division 7.0 / 7.0 =====
+Time: 515 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 7.0, B = 7.0, A / B = 3F800000 (should be 1.0 = 3F800000)
+Time: 545 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 14: Division -10.0 / 2.0 =====
+Time: 555 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = -10.0, B = 2.0, A / B = C0A00000 (should be -5.0 = C0A00000)
+Time: 585 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 15: Division 10.0 / -2.0 =====
+Time: 595 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 10.0, B = -2.0, A / B = C0A00000 (should be -5.0 = C0A00000)
+Time: 625 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 16: Division -10.0 / -2.0 =====
+Time: 635 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = -10.0, B = -2.0, A / B = 40A00000 (should be 5.0 = 40A00000)
+Time: 665 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 17: Division 8.0 / 4.0 =====
+Time: 675 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 8.0, B = 4.0, A / B = 40000000 (should be 2.0 = 40000000)
+Time: 705 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 18: Division 1.0 / 8.0 =====
+Time: 715 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 1.0, B = 8.0, A / B = 3E000000 (should be 0.125 = 3E000000)
+Time: 745 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 19: Division 0.0 / 0.0 (NaN) =====
+Time: 755 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 0.0, B = 0.0, A / B = 7FC00000 (should be NaN)
+Time: 785 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 20: Subtraction 0.0 - 0.0 =====
+Time: 795 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 0.0, B = 0.0, A - B = 00000000 (should be 0.0 = 00000000)
+Time: 825 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 21: NaN - 5.0 (NaN propagation) =====
+Time: 835 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = NaN, B = 5.0, A - B = 7FC00000 (should be NaN = 7FC00000)
+Time: 865 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 22: 5.0 / NaN (NaN propagation) =====
+Time: 875 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 5.0, B = NaN, A / B = 7FC00000 (should be NaN = 7FC00000)
+Time: 905 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 23: Division 10.0 / 3.0 (with remainder) =====
+Time: 915 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 10.0, B = 3.0, A / B = 40000000 (should be ~3.333 = 40555555)
+Time: 945 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: ===== TEST 24: Subtraction 100.0 - 0.001 =====
+Time: 955 ns  Iteration: 0  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd
+Note: A = 100.0, B = 0.001, A - B = 42C7FF7D (should be ~99.999)
+Time: 985 ns  Iteration: 1  Process: /fp32_alu_tb/stim_proc  File: C:/Users/jalba/Desktop/SSC/SSC_Project/SUB_DIV_FP_ALU/SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd

@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../SUB_DIV_FP_ALU.srcs/sources_1/new/SUB_DIV_FP_ALU.vhd" \
+"../../../../SUB_DIV_FP_ALU.srcs/sim_1/new/tb_fp32_alu.vhd" \
+
+# Do not sort compile order
+nosort
