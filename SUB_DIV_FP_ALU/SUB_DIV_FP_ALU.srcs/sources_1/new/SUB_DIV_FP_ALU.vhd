@@ -143,7 +143,7 @@ begin
                 result_reg <= special_out;
                 ready_reg <= '1';
             else
-                -- build mantissas (handle denormals: if exp==0 -> no implicit 1)
+                -- build mantissas
                 if exp_a = x"00" then
                     mant_a := "0" & frac_a; -- denormal
                 else
@@ -156,20 +156,11 @@ begin
                 end if;
 
                 if op = "00" then
-                    -- SUBTRACTION: A - B = A + (-B)
-                    -- Flip B's sign to convert to addition
+                    -- A - B = A + (-B)
                     effective_sign_b := not sign_b;
                     
-                    -- If effective signs are the same: ADD magnitudes
-                    -- If effective signs differ: SUBTRACT magnitudes (larger - smaller)
-                    
                     if sign_a = effective_sign_b then
-                        -- Same signs: ADD magnitudes, use common sign
-                        -- Examples: (-2) - (+5) = (-2) + (-5) = -(2+5) = -7
-                        --           (+5) - (-2) = (+5) + (+2) = +(5+2) = +7
                         sign_res := sign_a;
-                        
-                        -- Align to larger exponent
                         if exp_a >= exp_b then
                             exp_large := exp_a;
                             shift := to_integer(exp_a - exp_b);
@@ -177,7 +168,6 @@ begin
                             if shift > 0 and shift <= 24 then
                                 aligned_small := shift_right(mant_b, shift);
                             end if;
-                            -- ADD the mantissas
                             unsigned_diff := ('0' & mant_a) + ('0' & aligned_small);
                         else
                             exp_large := exp_b;
@@ -186,13 +176,9 @@ begin
                             if shift > 0 and shift <= 24 then
                                 aligned_small := shift_right(mant_a, shift);
                             end if;
-                            -- ADD the mantissas
                             unsigned_diff := ('0' & mant_b) + ('0' & aligned_small);
                         end if;
-                        
-                        -- Normalize: addition might overflow to bit 24
                         if unsigned_diff(24) = '1' then
-                            -- Overflow: shift right and increment exponent
                             unsigned_diff := '0' & unsigned_diff(24 downto 1);
                             res_exp := to_integer(exp_large) + 1;
                             norm_shift := 0;
@@ -200,10 +186,7 @@ begin
                             res_exp := to_integer(exp_large);
                             norm_shift := 0;
                         end if;
-                        
                     else
-                        -- Different signs: SUBTRACT magnitudes (larger - smaller)
-                        -- Determine which has larger magnitude
                         if exp_a > exp_b then
                             exp_large := exp_a; mant_large := mant_a; 
                             exp_small := exp_b; mant_small := mant_b; 
@@ -213,7 +196,6 @@ begin
                             exp_small := exp_a; mant_small := mant_a; 
                             sign_res := effective_sign_b;
                         else
-                            -- equal exponents: compare mantissas
                             if mant_a >= mant_b then
                                 exp_large := exp_a; mant_large := mant_a; 
                                 mant_small := mant_b; 
@@ -225,8 +207,6 @@ begin
                             end if;
                             exp_small := exp_a;
                         end if;
-
-                        -- align small mantissa to large exponent
                         shift := to_integer(exp_large - exp_small);
                         if shift > 24 then
                             diff := signed('0' & std_logic_vector(mant_large));
@@ -235,32 +215,23 @@ begin
                             if shift > 0 then
                                 aligned_small := shift_right(mant_small, shift);
                             end if;
-                            -- SUBTRACT: larger - smaller
                             diff := signed('0' & std_logic_vector(mant_large)) - signed('0' & std_logic_vector(aligned_small));
                         end if;
                         unsigned_diff := unsigned(std_logic_vector(diff));
                         res_exp := to_integer(exp_large);
                         norm_shift := 0;
                     end if;
-
-                    -- if diff == 0 => result zero
                     if unsigned_diff = 0 then
                         result_reg <= (others => '0');
                         ready_reg <= '1';
                     else
-                        -- normalize result (may need to shift left for subtraction case)
-                        -- shift left until MSB at bit 23 (leading 1)
                         while norm_shift < 24 and unsigned_diff(23) = '0' loop
                             unsigned_diff := unsigned_diff(23 downto 0) & '0';
                             norm_shift := norm_shift + 1;
                         end loop;
-                        -- new exponent
                         res_exp := res_exp - norm_shift;
-                        -- fraction is lower 23 bits (drop leading 1 at bit 23)
                         temp_frac := unsigned_diff(22 downto 0);
-                        -- pack result
                         if res_exp <= 0 then
-                            -- underflow -> zero (simplified handling)
                             result_reg <= (others => '0');
                         else
                             result_reg <= pack_fp(sign_res, to_unsigned(res_exp,8), temp_frac);
@@ -269,66 +240,45 @@ begin
                     end if;
 
                 elsif op = "01" then
-                    -- DIVISION: mant_a / mant_b using non-restoring division
-                    -- sign
                     sign_res2 := sign_a xor sign_b;
-                    -- initial exponent
                     exp_res_int := to_integer(exp_a) - to_integer(exp_b) + BIAS;
-                    
-                    -- Simple division: extend mantissas and divide
-                    -- Restoring division algorithm
-                    -- Place divisor at upper half
                     d := (47 downto 0 => '0');
                     d(47 downto 24) := mant_b;
-                    -- Place dividend one position lower (will shift left first)
                     r := (47 downto 0 => '0');
                     r(46 downto 23) := mant_a;
                     q := (23 downto 0 => '0');
 
-                    -- 24 iterations to get 24 bit quotient
-                    -- Build quotient MSB first (bit 23 down to bit 0)
                     for i in 0 to 23 loop
-                        -- shift left remainder by 1
                         r := r(46 downto 0) & '0';
-                        -- compare and subtract
                         if r >= d then
                             r := r - d;
                             q(23 - i) := '1';
                         end if;
                     end loop;
-
-                    -- normalize quotient: if MSB is 0, shift left by 1 and decrement exponent
                     if q(23) = '0' then
                         q := shift_left(q, 1);
                         exp_res_int := exp_res_int - 1;
                     end if;
 
-                    -- result exponent under/overflow check
                     if exp_res_int <= 0 then
-                        -- underflow -> zero (simplified)
                         result_reg <= (others => '0');
                         ready_reg <= '1';
                     elsif exp_res_int >= 255 then
-                        -- overflow -> Inf
                         result_reg <= pack_fp(sign_res2, x"FF", (22 downto 0 => '0'));
                         ready_reg <= '1';
                     else
-                        final_frac := q(22 downto 0); -- drop MSB implicit
+                        final_frac := q(22 downto 0);
                         result_reg <= pack_fp(sign_res2, to_unsigned(exp_res_int,8), final_frac);
                         ready_reg <= '1';
                     end if;
 
                 else
-                    -- unsupported op
                     result_reg <= (others => '0');
                     ready_reg <= '1';
                 end if;
             end if;
         end if;
     end process;
-
-    -- Concurrent signal assignments outside process
     rdy <= ready_reg;
     y <= result_reg;
-
 end architecture rtl;

@@ -1,6 +1,3 @@
--- tb_fp32_alu.vhd
--- Testbench for fp32_alu (IEEE 754 single precision ALU)
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -9,8 +6,6 @@ entity fp32_alu_tb is
 end entity;
 
 architecture tb of fp32_alu_tb is
-
-    -- DUT component declaration
     component fp32_alu is
         port (
             clk   : in  std_logic;
@@ -23,7 +18,6 @@ architecture tb of fp32_alu_tb is
         );
     end component;
 
-    -- Signals
     signal clk   : std_logic := '0';
     signal rst   : std_logic := '0';
     signal op    : std_logic_vector(1 downto 0) := (others => '0');
@@ -33,7 +27,6 @@ architecture tb of fp32_alu_tb is
 
     constant CLK_PERIOD : time := 10 ns;
 
-    -- Helper function to convert real to IEEE754 single precision
     function real_to_fp32(r: real) return std_logic_vector is
         variable sign  : std_logic;
         variable exp   : integer;
@@ -74,7 +67,6 @@ architecture tb of fp32_alu_tb is
         return res;
     end function;
 
-    -- Helper to display FP32 value as hex string
     function to_hex_string(slv: std_logic_vector(31 downto 0)) return string is
         variable hexchars : string(1 to 8);
         variable temp : std_logic_vector(31 downto 0) := slv;
@@ -89,7 +81,6 @@ architecture tb of fp32_alu_tb is
     end function;
 
 begin
-    -- Instantiate the ALU
     dut: fp32_alu
         port map (
             clk => clk,
@@ -101,7 +92,6 @@ begin
             y   => y
         );
 
-    -- Clock generation
     clk_process: process
     begin
         clk <= '0';
@@ -110,10 +100,8 @@ begin
         wait for CLK_PERIOD/2;
     end process;
 
-    -- Test sequence
     stim_proc: process
     begin
-        -- Reset
         rst <= '1';
         wait for 2*CLK_PERIOD;
         rst <= '0';
