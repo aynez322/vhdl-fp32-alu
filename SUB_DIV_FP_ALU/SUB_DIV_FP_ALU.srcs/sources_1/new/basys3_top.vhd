@@ -133,13 +133,13 @@ begin
                 test_number <= 0;
                 test_idx_a <= 0;
                 test_idx_b <= 0;
-                op_mode <= "00";  -- Start with subtraction
+                op_mode <= "00";
             else
                 if btnL_edge = '1' then
                     if op_mode = "00" then
-                        op_mode <= "01";  -- Switch to DIV
+                        op_mode <= "01";  -- DIV
                     else
-                        op_mode <= "00";  -- Switch to SUB
+                        op_mode <= "00";  -- SUB
                     end if;
                 end if;
                 
@@ -251,7 +251,6 @@ begin
         end case;
     end process;
     
-    -- LED status indicators
     led(15 downto 12) <= std_logic_vector(to_unsigned(test_idx_a, 4));
     led(11 downto 8)  <= std_logic_vector(to_unsigned(test_idx_b, 4));
     led(7 downto 2)   <= (others => '0');

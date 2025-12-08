@@ -1,8 +1,8 @@
 ## Basys3 Board Constraints for FP32 ALU Project
 
-## Clock signal (100 MHz)
+## Clock signal (100 MHz input, but constrained to 20 MHz for timing)
 set_property -dict { PACKAGE_PIN W5   IOSTANDARD LVCMOS33 } [get_ports clk]
-create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports clk]
+create_clock -add -name sys_clk_pin -period 50.00 -waveform {0 25} [get_ports clk]
 
 ## Buttons
 set_property -dict { PACKAGE_PIN U18  IOSTANDARD LVCMOS33 } [get_ports btnC]
